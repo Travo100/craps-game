@@ -1,0 +1,16 @@
+{
+  "name": "exercise2",
+  "version": "0.1.0",
+  "description": "Craps Games with JS",
+  "main": "dev.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Travis Thompson",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-ruby-sass": "^1.0.0-alpha.3",
+    "gulp-webserver": "^0.9.0"
+  }
+}

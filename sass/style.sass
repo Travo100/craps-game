@@ -1,0 +1,44 @@
+$color: white
+$font-family: 'Courgette', sans-serif
+
+body, html 
+  background: url('../imgs/pool_table.png')
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) 
+  body, html 
+    background: url('../imgs/pool_table_@2X.png') 
+    background-size: 256px 256px
+
+p 
+  font-size: 22px
+  color: $color
+  text-align: center
+  clear: both
+  font-family: $font-family
+
+.dice-container 
+  width: 270px 
+  margin: 10px auto
+
+#diceOneDiv, #diceTwoDiv
+  width: 125px
+  height: 125px
+  display: inline-block
+  text-align: center
+  margin: 5px
+  background-image: url('../imgs/dice.png')
+  text-indent: -9999px
+
+/*Grabbing it from the spritesheet*/
+.value1 
+  background-position: 0px center
+.value2 
+  background-position: -125px center
+.value3 
+  background-position: -250px center
+.value4 
+  background-position: -375px center
+.value5
+  background-position: -500px center
+.value6 
+  background-position: -625px center
