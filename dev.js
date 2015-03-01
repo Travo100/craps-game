@@ -35,10 +35,10 @@ function rollDice() {
   if (turns === 0) {
     if(roll === 7 || roll === 11) {
       rollp.innerHTML = 'You Win!';
-      turns = 0;
+      turns = 0;  
     } else if (roll === 2 || roll === 3 || roll === 12) {
       rollp.innerHTML = 'You Lose!'; 
-      turns = 0; 
+      turns = 0;
     } else {
       point = roll;
       currPoint.innerHTML = "The current point is : " + point.toString();
@@ -50,6 +50,7 @@ function rollDice() {
       rollp.innerHTML = 'You Lose!';
       turns = -1;
       point = 0;
+      currPoint.innerHTML = "The current point is : " + point.toString();
     }
   } 
 }

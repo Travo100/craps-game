@@ -13,8 +13,14 @@ p {
   font-family: "Courgette", sans-serif; }
 
 .dice-container {
-  width: 270px;
+  width: 274px;
   margin: 10px auto; }
+
+button {
+  margin: 10px auto;
+  display: block;
+  font-family: "Courgette", sans-serif;
+  font-size: 24px; }
 
 #diceOneDiv, #diceTwoDiv {
   width: 125px;
