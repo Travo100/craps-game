@@ -44,7 +44,7 @@ a {
   background-image: url("../imgs/dice.png");
   text-indent: -9999px; }
 
-.modal, #loserScreen {
+.show-modal, #loserScreen {
   position: fixed;
   padding: 10px;
   border-radius: 4px;
@@ -53,24 +53,12 @@ a {
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.9); }
-  .modal > .inner-modal, #loserScreen > .inner-modal {
+  .show-modal > .inner-modal, #loserScreen > .inner-modal {
     border: 2px solid #fff;
     position: relative;
     margin: 15% auto;
     padding: 20px;
     width: 300px; }
-
-#craps .modal {
-  display: block;
-  transition: all 0.25s ease-in-out;
-  opacity: 1; }
-#craps:target .modal {
-  opacity: 0;
-  z-index: 0; }
-#craps:target #roll {
-  position: relative;
-  z-index: 10;
-  cursor: pointer; }
 
 .hide-modal {
   opacity: 0;

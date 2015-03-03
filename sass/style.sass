@@ -47,7 +47,7 @@ a
   background-image: url('../imgs/dice.png')
   text-indent: -9999px
 
-.modal, #loserScreen
+.show-modal, #loserScreen
   position: fixed
   padding: 10px 
   border-radius: 4px
@@ -65,19 +65,19 @@ a
 // .hidden-modal 
 //   opacity: 0
 
-#craps
-  .modal
-    display: block
-    transition: all 0.25s ease-in-out
-    opacity: 1
-  &:target
-    .modal
-      opacity: 0
-      z-index: 0
-    #roll
-      position: relative
-      z-index: 10
-      cursor: pointer
+// #craps
+//   .modal
+//     display: block
+//     transition: all 0.25s ease-in-out
+//     opacity: 1
+//   &:target
+//     .modal
+//       opacity: 0
+//       z-index: 0
+//     #roll
+//       position: relative
+//       z-index: 10
+//       cursor: pointer
 
 .hide-modal 
   opacity: 0

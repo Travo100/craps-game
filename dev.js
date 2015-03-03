@@ -2,7 +2,6 @@ function DiceGame() {
   this.turns = 0;
   this.point = 0;
   this.betAmt = 0;
-
   this.diceOne = 0;
   this.diceTwo = 0;
   this.roll = 0;
@@ -11,9 +10,13 @@ function DiceGame() {
     this.rollDice();
   }.bind(this));
 
-  document.getElementById('placeBet').addEventListener('click', this.betIt.bind(this));
+  document.getElementById('placeBet').addEventListener('click', function() {
+    document.getElementById('modalWindow').setAttribute("class", "hide-modal");
+    this.betIt();
+  }.bind(this));
   this.updateUI();
 }
+
 DiceGame.prototype.updateUI = function() {
   var dice1P = document.getElementById('dice1p'),
       dice2p = document.getElementById('dice2p'),
@@ -38,12 +41,20 @@ DiceGame.prototype.betIt = function() {
   this.betAmt = parseInt(document.getElementById('betAmt').value);
   this.updateUI();
 }
+DiceGame.prototype.betItLoser = function() {
+  this.betAmt = parseInt(document.getElementById('betAmtLoser').value);
+  this.updateUI();
+}
 
 DiceGame.prototype.loserScreen = function() {
   if (this.betAmt <= 0) {
-    var loserScreen = document.getElementById('loserScreen');
-    loserScreen.setAttribute("class", "show-modal");
+      var loserScreen = document.getElementById('loserScreen');
+      loserScreen.setAttribute("class", "show-modal");
+      
   }
+  document.getElementById('placeBetLoser').addEventListener('click', function() {
+        document.getElementById('loserScreen').setAttribute("class", "hide-modal");
+  });
 }
 DiceGame.prototype.win = function() {
   this.rollMessage = 'You Win!'
