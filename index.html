@@ -11,19 +11,36 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <section>
-    
-    <p id="currPoint">The current point is: 0</p>
-    <p id="currRoll">The current roll is: 0</p>
-    <div class="dice-container">
-      <div id="diceOneDiv" class="value1">1</div>
-      <div id="diceTwoDiv" class="value2">2</div>
+<section id="craps">
+  <h2 id="bet">Bet:</h2>
+  <p id="currPoint">The current point is: 0</p>
+  <p id="currRoll">The current roll is: 0</p>
+  <div class="dice-container">
+    <div id="diceOneDiv" class="value1">1</div>
+    <div id="diceTwoDiv" class="value2">2</div>
+  </div>
+  <p id="dice1p">1</p>
+  <p id="dice2p">2</p>
+  <p id="rollp">Roll</p>
+  <button id="roll">Roll Dice</button>
+  <div class="modal" id="modalWindow">
+    <div class="inner-modal">
+      <h1>Welcome to Craps!</h1>
+      <p>Please enter your bet amount</p>
+      <input type="text" id="betAmt" />
+      <a href="#craps" id="placeBet">Place Bet</a>
     </div>
-    <p id="dice1p">1</p>
-    <p id="dice2p">2</p>
-    <p id="rollp">Roll</p>
-    <button id="roll">Roll Dice</button>
-  </section>
+  </div>
+  <div class="hide-modal" id="loserScreen">
+    <div class="inner-modal">
+      <h1>You have lost!</h1>
+      <h2>Keep Playing?</h2>
+      <p>Please enter your bet amount</p>
+      <input type="text" id="betAmt" />
+      <a href="#craps" id="placeBet">Place Bet</a>
+    </div>
+  </div>
+</section>
 <script src="dev.js"></script>
 </body>
 </html>

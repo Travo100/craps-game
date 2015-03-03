@@ -1,56 +1,95 @@
-var diceOne, diceTwo, roll, point;
-var turns = 0,
-    point = 0;
-var dice1P = document.getElementById('dice1p');
-var dice2p = document.getElementById('dice2p');
-var rollp = document.getElementById('rollp');
-var rollBtn = document.getElementById('roll');
-var currPoint = document.getElementById('currPoint');
-var currRoll = document.getElementById('currRoll');
-var diceOneDiv = document.getElementById('diceOneDiv');
-var diceTwoDiv = document.getElementById('diceTwoDiv');
+function DiceGame() {
+  this.turns = 0;
+  this.point = 0;
+  this.betAmt = 0;
 
-rollBtn.addEventListener('click', onClick);
+  this.diceOne = 0;
+  this.diceTwo = 0;
+  this.roll = 0;
+  this.rollMessage = 'Welcome!'
+  document.getElementById('roll').addEventListener('click', function() {
+    this.rollDice();
+  }.bind(this));
 
-function onClick() {
-  rollDice();
-  turns++;
-  currRoll.innerHTML = "The current turn is : " + turns.toString();  
+  document.getElementById('placeBet').addEventListener('click', this.betIt.bind(this));
+  this.updateUI();
+}
+DiceGame.prototype.updateUI = function() {
+  var dice1P = document.getElementById('dice1p'),
+      dice2p = document.getElementById('dice2p'),
+      rollBtn = document.getElementById('roll'),
+      currPoint = document.getElementById('currPoint'),
+      rollp = document.getElementById('rollp'),
+      currRoll = document.getElementById('currRoll'),
+      diceOneDiv = document.getElementById('diceOneDiv'),
+      diceTwoDiv = document.getElementById('diceTwoDiv'),
+      bet = document.getElementById('bet'),
+      placeBet = document.getElementById('placeBet');
+  dice1p.innerHTML = this.diceOne.toString();
+  dice2p.innerHTML = this.diceTwo.toString();
+  rollp.innerHTML = this.rollMessage;
+  currRoll.innerHTML = "The current turn is : " + this.turns;
+  bet.innerHTML = "Bet is " + this.betAmt;
+  currPoint.innerHTML = "The current point is : " + this.point;
+  diceOneDiv.setAttribute("class", "value" + this.diceOne);
+  diceTwoDiv.setAttribute("class", "value" + this.diceTwo);
+}
+DiceGame.prototype.betIt = function() {
+  this.betAmt = parseInt(document.getElementById('betAmt').value);
+  this.updateUI();
 }
 
-function rollDice() {
-
-  diceOne = Math.floor(Math.random() * 6) + 1; //1-6
-  diceTwo = Math.floor(Math.random() * 6) + 1; //1-6
-  roll = diceOne + diceTwo;
-
-  dice1p.innerHTML = diceOne.toString();
-  dice2p.innerHTML = diceTwo.toString();
-  rollp.innerHTML = roll.toString();
-
-  diceOneDiv.setAttribute("class", "value" + diceOne);
-  diceTwoDiv.setAttribute("class", "value" + diceTwo);
-
-  //Did we win or lose?
-  if (turns === 0) {
-    if(roll === 7 || roll === 11) {
-      rollp.innerHTML = 'You Win!';
-      turns = 0;  
-    } else if (roll === 2 || roll === 3 || roll === 12) {
-      rollp.innerHTML = 'You Lose!'; 
-      turns = 0;
-    } else {
-      point = roll;
-      currPoint.innerHTML = "The current point is : " + point.toString();
-    }
+DiceGame.prototype.loserScreen = function() {
+  if (this.betAmt <= 0) {
+    var loserScreen = document.getElementById('loserScreen');
+    loserScreen.setAttribute("class", "show-modal");
   }
-  if (turns >= 1) {
-    
-    if (roll === 7 || roll === point) {
-      rollp.innerHTML = 'You Lose!';
-      turns = -1;
-      point = 0;
-      currPoint.innerHTML = "The current point is : " + point.toString();
+}
+DiceGame.prototype.win = function() {
+  this.rollMessage = 'You Win!'
+  this.turns = 0;
+  this.betAmt *= 2;
+  this.point = 0;
+  this.updateUI();
+}
+DiceGame.prototype.lose = function() {
+  this.rollMessage = 'You Lose!';
+  this.turns = 0;
+  this.betAmt -= this.betAmt;
+  this.point = 0;
+  this.loserScreen();
+  this.updateUI();
+}
+DiceGame.prototype.rollDice = function() {
+  this.diceOne = Math.floor(Math.random() * 6) + 1; //1-6
+  this.diceTwo = Math.floor(Math.random() * 6) + 1; //1-6
+  this.roll = this.diceOne + this.diceTwo;
+  this.turns++;
+  // console.log(this.roll);
+  this.updateUI();
+  //Did we win or lose?
+  if (this.turns === 1) {
+    if(this.roll === 7 || this.roll === 11) {
+      this.win();
+    } else if (this.roll === 2 || this.roll === 3 || this.roll === 12) {
+      this.lose();
+    } else {
+      this.point = this.roll;
+      this.rollMessage = 'Playing the point!'
+      this.updateUI();
     }
   } 
+  if (this.turns >= 2) {
+    if (this.roll === this.point) {
+      this.win();
+    }
+
+    if (this.roll === 7 || this.roll === this.point) {
+      this.lose();
+    }
+  }
+  
 }
+
+// Start it up
+var d = new DiceGame();

@@ -9,22 +9,34 @@ body, html
     background: url('../imgs/pool_table_@2X.png') 
     background-size: 256px 256px
 
+h1, h2, p, a, button, input 
+  font-family: $font-family
+
 p 
   font-size: 22px
+h1, h2 
+  font-weight: 400  
+
+h1, h2, p, a
   color: $color
   text-align: center
   clear: both
-  font-family: $font-family
+
+button, input, a 
+  margin: 10px auto
+  display: block
+  font-size: 24px
+
+a 
+  text-decoration: none
+  border: 2px solid #fff
+  border-radius: 4px 
+  width: 200px
+  padding: 10px
 
 .dice-container 
   width: 274px 
   margin: 10px auto
-
-button 
-  margin: 10px auto
-  display: block
-  font-family: $font-family
-  font-size: 24px
 
 #diceOneDiv, #diceTwoDiv
   width: 125px
@@ -34,6 +46,46 @@ button
   margin: 5px
   background-image: url('../imgs/dice.png')
   text-indent: -9999px
+
+.modal, #loserScreen
+  position: fixed
+  padding: 10px 
+  border-radius: 4px
+  top: 0
+  right: 0 
+  bottom: 0
+  left: 0
+  background: rgba(0,0,0,0.9)
+  >.inner-modal 
+    border: 2px solid #fff
+    position: relative 
+    margin: 15% auto
+    padding: 20px
+    width: 300px
+// .hidden-modal 
+//   opacity: 0
+
+#craps
+  .modal
+    display: block
+    transition: all 0.25s ease-in-out
+    opacity: 1
+  &:target
+    .modal
+      opacity: 0
+      z-index: 0
+    #roll
+      position: relative
+      z-index: 10
+      cursor: pointer
+
+.hide-modal 
+  opacity: 0
+  z-index: -99
+.show-modal 
+  opacity: 1
+  z-index: 99
+
 
 /*Grabbing it from the spritesheet*/
 .value1 
