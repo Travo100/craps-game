@@ -10,9 +10,9 @@ function DiceGame() {
     this.rollDice();
   }.bind(this));
 
-  document.getElementById('placeBet').addEventListener('click', function() {
+  document.getElementsByClassName('placeBet')[0].addEventListener('click', function() {
     document.getElementById('modalWindow').setAttribute("class", "hide-modal");
-    this.betIt();
+    this.betIt(0);
   }.bind(this));
   this.updateUI();
 }
@@ -37,8 +37,8 @@ DiceGame.prototype.updateUI = function() {
   diceOneDiv.setAttribute("class", "value" + this.diceOne);
   diceTwoDiv.setAttribute("class", "value" + this.diceTwo);
 }
-DiceGame.prototype.betIt = function() {
-  this.betAmt = parseInt(document.getElementById('betAmt').value);
+DiceGame.prototype.betIt = function(num) {
+  this.betAmt = parseInt(document.getElementsByClassName('betAmt')[num].value);
   this.updateUI();
 }
 DiceGame.prototype.betItLoser = function() {
@@ -50,12 +50,13 @@ DiceGame.prototype.loserScreen = function() {
   if (this.betAmt <= 0) {
       var loserScreen = document.getElementById('loserScreen');
       loserScreen.setAttribute("class", "show-modal");
-      
+      document.getElementsByClassName('placeBet')[1].addEventListener('click', function() {
+      document.getElementById('loserScreen').setAttribute("class", "hide-modal");
+      this.betIt(1);
+    }.bind(this));
   }
-  document.getElementById('placeBetLoser').addEventListener('click', function() {
-        document.getElementById('loserScreen').setAttribute("class", "hide-modal");
-  });
 }
+
 DiceGame.prototype.win = function() {
   this.rollMessage = 'You Win!'
   this.turns = 0;
